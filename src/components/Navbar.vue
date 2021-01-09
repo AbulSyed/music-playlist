@@ -19,7 +19,6 @@
 import useLogout from '../composables/useLogout'
 import { useRouter } from 'vue-router'
 import getUser from '../composables/getUser'
-import { ref } from 'vue'
 
 export default {
   setup(){
