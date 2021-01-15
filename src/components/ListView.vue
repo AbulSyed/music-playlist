@@ -8,7 +8,7 @@
         <h3>{{ playlist.title }}</h3>
         <p>Created by {{ playlist.name }}</p>
       </div>
-      <div class="song-number">
+      <div class="songs">
         <p>{{ playlist.songs.length }}</p>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
   .info {
     margin: 0 30px;
   }
-  .song-number {
+  .songs {
     margin-left: auto;
   }
   
