@@ -1,7 +1,7 @@
 <template>
   <div v-for="playlist in playlists" :key="playlist.id">
     <div class="single">
-      <div class="thumbnail">
+      <div class="image">
         <img :src="playlist.coverUrl" alt="">
       </div>
       <div class="info">
@@ -37,7 +37,7 @@ export default {
     transform: scale(1.02);
     transition: all ease 0.2s;
   }
-  .thumbnail {
+  .image {
     max-width: 100px;
     max-height: 100px;
     overflow: hidden;
