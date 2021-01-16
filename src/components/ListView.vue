@@ -54,5 +54,4 @@ export default {
   .songs {
     margin-left: auto;
   }
-  
 </style>
