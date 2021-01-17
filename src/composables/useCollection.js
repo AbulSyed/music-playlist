@@ -8,7 +8,8 @@ const useCollection = (collection) => {
     error.value = null
 
     try {
-      await firestoreService.collection(collection).add(doc)
+      const response = await firestoreService.collection(collection).add(doc)
+      return response
     }catch(e){
       error.value = e.message
       console.log(error.value)
