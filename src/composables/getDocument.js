@@ -12,7 +12,7 @@ const getDocument = (collection, id) => {
       document.value = { ...snap.data(), id: snap.id }
       error.value = null
     }else{
-      throw new Error('Document doesnt exist')
+      throw Error('No data available')
     }
   }, (e) => {
     error.value = e.message
