@@ -37,7 +37,7 @@ export default {
         const response = await addDoc({
           title: title.value,
           description: description.value,
-          user: user.value.uid,
+          userId: user.value.uid,
           name: user.value.displayName,
           coverUrl: url.value,
           filePath: filePath.value,
