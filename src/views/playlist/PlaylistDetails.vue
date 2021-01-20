@@ -8,19 +8,40 @@
       <h2>{{ document.title }}</h2>
       <p>Created by {{ document.name }}</p>
       <p>{{ document.description }}</p>
+      <button v-if="authUser" @click="handleClick">Delete playlist</button>
     </div>
   </div>
 </template>
 
 <script>
+import { computed } from 'vue'
 import getDocument from '../../composables/getDocument'
+import getUser from '../../composables/getUser'
+import useDocument from '../../composables/useDocument'
+import useStorage from '../../composables/useStorage'
+import { useRouter } from 'vue-router'
 
 export default {
   props: ['id'],
   setup(props){
     const { document, error } = getDocument('playlists', props.id)
+    const { user } = getUser()
+    const { deleteDoc } = useDocument('playlists', props.id)
+    const { deleteImage } = useStorage()
 
-    return { document, error }
+    const authUser = computed(() => {
+      return document.value && user.value && user.value.uid == document.value.userId
+    })
+
+    const router = useRouter()
+
+    const handleClick = async () => {
+      await deleteDoc()
+      await deleteImage(document.value.filePath)
+      router.push({ name: 'Home' })
+    }
+
+    return { document, error, authUser, handleClick }
   }
 }
 </script>
