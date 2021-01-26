@@ -16,7 +16,18 @@ const useCollection = (collection) => {
     }
   }
 
-  return { error, addDoc }
+  const deleteDoc = async (id) => {
+    error.value = null
+
+    try {
+      await firestoreService.collection(collection).doc(id).delete()
+    }catch(e){
+      error.value = e.message
+      console.log(error.value)
+    }
+  }
+
+  return { error, addDoc, deleteDoc }
 }
 
 export default useCollection

@@ -17,7 +17,7 @@
 import { computed } from 'vue'
 import getDocument from '../../composables/getDocument'
 import getUser from '../../composables/getUser'
-import useDocument from '../../composables/useDocument'
+import useCollection from '../../composables/useCollection'
 import useStorage from '../../composables/useStorage'
 import { useRouter } from 'vue-router'
 
@@ -26,7 +26,7 @@ export default {
   setup(props){
     const { document, error } = getDocument('playlists', props.id)
     const { user } = getUser()
-    const { deleteDoc } = useDocument('playlists', props.id)
+    const { deleteDoc } = useCollection('playlists')
     const { deleteImage } = useStorage()
 
     const authUser = computed(() => {
@@ -36,7 +36,7 @@ export default {
     const router = useRouter()
 
     const handleClick = async () => {
-      await deleteDoc()
+      await deleteDoc(props.id)
       await deleteImage(document.value.filePath)
       router.push({ name: 'Home' })
     }
