@@ -1,5 +1,5 @@
-import { ref } from "vue"
-import { firestoreService } from "../firebase/config"
+import { ref } from 'vue'
+import { firestoreService } from '../firebase/config'
 
 const useCollection = (collection) => {
   const error = ref(null)

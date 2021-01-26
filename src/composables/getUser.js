@@ -1,5 +1,5 @@
-import { ref } from "vue"
-import { authService } from "../firebase/config"
+import { ref } from 'vue'
+import { authService } from '../firebase/config'
 
 const user = ref(authService.currentUser)
 
