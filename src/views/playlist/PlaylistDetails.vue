@@ -10,6 +10,16 @@
       <p>{{ document.description }}</p>
       <button v-if="authUser" @click="handleClick">Delete playlist</button>
     </div>
+
+    <div>
+      <div v-if="!document.songs.length">No songs yet</div>
+      <div v-for="song in document.songs" :key="song.id" class="song">
+        <h3>{{ song.title }}</h3>
+        <p>{{ song.artist }}</p>
+        <button v-if="authUser">Delete</button>
+      </div>
+      <add-song v-if="authUser" :playlist="document"></add-song>
+    </div>
   </div>
 </template>
 
@@ -20,9 +30,11 @@ import getUser from '../../composables/getUser'
 import useCollection from '../../composables/useCollection'
 import useStorage from '../../composables/useStorage'
 import { useRouter } from 'vue-router'
+import AddSong from '../../components/AddSong.vue'
 
 export default {
   props: ['id'],
+  components: { AddSong },
   setup(props){
     const { document, error } = getDocument('playlists', props.id)
     const { user } = getUser()
@@ -75,5 +87,13 @@ export default {
     min-height: 100%;
     max-width: 200%;
     max-height: 200%;
+  }
+  .song {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--secondary);
+    margin-bottom: 20px;
   }
 </style>
