@@ -1,16 +1,16 @@
 <template>
-  <button v-if="!showForm" @click="showForm = true">Add songs</button>
+  <button v-if="!showForm" @click="showForm = true">Add song</button>
   <form v-if="showForm" @submit.prevent="handleSubmit">
-    <h3>Add a new song</h3>
-    <input type="text" required placeholder="Title" v-model="title">
-    <input type="text" required placeholder="Artist" v-model="artist">
+    <h3>Add song</h3>
+    <input type="text" required placeholder="title" v-model="title">
+    <input type="text" required placeholder="artist" v-model="artist">
     <button>Add</button>
   </form>
 </template>
 
 <script>
 import { ref } from 'vue'
-import { v4 } from 'uuid';
+import { v4 } from 'uuid'
 import useCollection from '../composables/useCollection'
 
 export default {
