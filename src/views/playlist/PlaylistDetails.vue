@@ -16,7 +16,7 @@
       <div v-for="song in document.songs" :key="song.id" class="song">
         <h3>{{ song.title }}</h3>
         <p>{{ song.artist }}</p>
-        <button v-if="authUser">Delete</button>
+        <button v-if="authUser" @click="handleClick2(song.id)">Delete</button>
       </div>
       <add-song v-if="authUser" :playlist="document"></add-song>
     </div>
@@ -38,7 +38,7 @@ export default {
   setup(props){
     const { document, error } = getDocument('playlists', props.id)
     const { user } = getUser()
-    const { deleteDoc } = useCollection('playlists')
+    const { deleteDoc, updateDoc } = useCollection('playlists')
     const { deleteImage } = useStorage()
 
     const authUser = computed(() => {
@@ -53,7 +53,14 @@ export default {
       router.push({ name: 'Home' })
     }
 
-    return { document, error, authUser, handleClick }
+    const handleClick2 = async (id) => {
+      const songs = document.value.songs.filter(song => song.id != id)
+      await updateDoc(props.id, {
+        songs
+      })
+    }
+
+    return { document, error, authUser, handleClick, handleClick2 }
   }
 }
 </script>
