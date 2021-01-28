@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'Home' }"><h1>Music playlist</h1></router-link>
       <div class="links">
         <div v-if="user">
-          <router-link :to="{ name: 'CreatePlaylist' }">Create Playlist</router-link>
+          <router-link :to="{ name: 'CreatePlaylist' }">Create playlist</router-link>
           <button @click="handleClick">Logout</button>
         </div>
         <div v-else>
@@ -51,9 +51,6 @@ export default {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-  }
-  nav img {
-    max-height: 60px;
   }
   nav h1 {
     margin-left: 20px;
