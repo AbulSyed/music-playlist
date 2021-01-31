@@ -1,5 +1,5 @@
 <template>
-  <h2>My playlists</h2>
+  <h3>My playlists</h3>
   <div v-if="error">{{ error }}</div>
   <div v-if="documents">
     <playlist-view :playlists="documents"></playlist-view>
@@ -16,8 +16,6 @@ export default {
   setup(){
     const { user } = getUser()
     const { documents, error } = getCollection('playlists', ['userId', '==', user.value.uid])
-
-    console.log(documents)
 
     return { documents, error }
   }
